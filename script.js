@@ -3023,7 +3023,9 @@ document.addEventListener('DOMContentLoaded', () => {
         const isPrimaryTeacherEmail = email === 'mtung0208@gmail.com';
 
         if (isPrimaryTeacherEmail && !wantsPracticeMode) {
-            window.location.replace('./teacher.html');
+            setTimeout(() => {
+                window.location.replace('./teacher.html');
+            }, 120);
             return;
         }
 
@@ -3114,24 +3116,58 @@ document.addEventListener('DOMContentLoaded', () => {
             return;
         }
 
-        renderAuthGate();
-        const { data } = await client.auth.getSession();
-        if (data && data.session && data.session.user) {
-            await loadCloudStudentData(data.session.user);
+        let authLoadInFlight = false;
+        async function handleSessionUser(sessionUser) {
+            if (!sessionUser || authLoadInFlight) return;
+            if (currentAccount && currentAccount.id === sessionUser.id) return;
+            authLoadInFlight = true;
+            try {
+                await loadCloudStudentData(sessionUser);
+            } finally {
+                authLoadInFlight = false;
+            }
         }
 
-        client.auth.onAuthStateChange(async (event, session) => {
-            if (event === 'SIGNED_IN' && session && session.user) {
-                if (!currentAccount || currentAccount.id !== session.user.id) {
-                    await loadCloudStudentData(session.user);
-                }
+        const oauthErr = CLOUD.extractOAuthErrorFromUrl ? CLOUD.extractOAuthErrorFromUrl() : '';
+        if (oauthErr) {
+            authState.authError = 'Đăng nhập Google không thành công: ' + oauthErr;
+        } else if (CLOUD.hasAuthCallbackParams && CLOUD.hasAuthCallbackParams()) {
+            authState.authLoading = true;
+        }
+
+        renderAuthGate();
+
+        // Register listener BEFORE getSession() and defer async Supabase calls out of lock
+        client.auth.onAuthStateChange((event, session) => {
+            if ((event === 'INITIAL_SESSION' || event === 'SIGNED_IN' || event === 'TOKEN_REFRESHED') && session && session.user) {
+                setTimeout(() => {
+                    handleSessionUser(session.user);
+                }, 0);
             } else if (event === 'SIGNED_OUT') {
                 currentAccount = null;
                 authState.isTeacher = false;
                 authState.needsProfileSetup = false;
                 authState.submissionsByExId = {};
+                authState.authLoading = false;
                 renderAuthGate();
+            } else if (event === 'INITIAL_SESSION' && !session) {
+                if (authState.authLoading) {
+                    authState.authLoading = false;
+                    renderAuthGate();
+                }
             }
         });
+
+        const { data, error: sessErr } = await client.auth.getSession();
+        if (sessErr && !authState.authError) {
+            authState.authError = 'Lỗi phiên đăng nhập: ' + sessErr.message;
+            authState.authLoading = false;
+            renderAuthGate();
+        } else if (data && data.session && data.session.user) {
+            await handleSessionUser(data.session.user);
+        } else if (authState.authLoading && !(CLOUD.hasAuthCallbackParams && CLOUD.hasAuthCallbackParams())) {
+            authState.authLoading = false;
+            renderAuthGate();
+        }
     })();
 });

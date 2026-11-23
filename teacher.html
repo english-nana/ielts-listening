@@ -18,8 +18,8 @@
 <body>
   <div id="teacher-app"></div>
   <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
-  <script src="./supabase-config.js?v=1.1"></script>
-  <script src="./supabase-client.js?v=1.0"></script>
+  <script src="./supabase-config.js?v=1.2"></script>
+  <script src="./supabase-client.js?v=1.2"></script>
   <script>
     (function () {
       const CLOUD = window.ListeningCloud;
@@ -916,23 +916,52 @@
           return;
         }
 
-        renderTeacherApp();
-        const { data } = await client.auth.getSession();
-        if (data && data.session && data.session.user) {
-          await verifyAndLoadCloudTeacher(data.session.user);
+        const oauthErr = CLOUD.extractOAuthErrorFromUrl ? CLOUD.extractOAuthErrorFromUrl() : "";
+        if (oauthErr) {
+          tState.authError = "Đăng nhập Google không thành công: " + oauthErr;
+        } else if (CLOUD.hasAuthCallbackParams && CLOUD.hasAuthCallbackParams()) {
+          tState.loading = true;
         }
 
-        client.auth.onAuthStateChange(async (event, session) => {
-          if (event === "SIGNED_IN" && session && session.user && !tState.authenticated && !tState.unauthorizedEmail) {
-            await verifyAndLoadCloudTeacher(session.user);
+        renderTeacherApp();
+
+        let teacherVerifyInFlight = false;
+        async function handleTeacherSessionUser(user) {
+          if (!user || teacherVerifyInFlight || tState.authenticated || tState.unauthorizedEmail) return;
+          teacherVerifyInFlight = true;
+          try {
+            await verifyAndLoadCloudTeacher(user);
+          } finally {
+            teacherVerifyInFlight = false;
+          }
+        }
+
+        client.auth.onAuthStateChange((event, session) => {
+          if ((event === "INITIAL_SESSION" || event === "SIGNED_IN" || event === "TOKEN_REFRESHED") && session && session.user) {
+            setTimeout(() => {
+              handleTeacherSessionUser(session.user);
+            }, 0);
           } else if (event === "SIGNED_OUT") {
             tState.authenticated = false;
             tState.unauthorizedEmail = "";
             tState.teacherEmail = "";
             tState.teacherUserId = "";
+            tState.loading = false;
+            renderTeacherApp();
+          } else if (event === "INITIAL_SESSION" && !session && tState.loading) {
+            tState.loading = false;
             renderTeacherApp();
           }
         });
+
+        const { data, error: sessErr } = await client.auth.getSession();
+        if (sessErr && !tState.authError) {
+          tState.authError = "Lỗi phiên đăng nhập: " + sessErr.message;
+          tState.loading = false;
+          renderTeacherApp();
+        } else if (data && data.session && data.session.user) {
+          await handleTeacherSessionUser(data.session.user);
+        }
       });
     })();
   </script>

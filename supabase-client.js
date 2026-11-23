@@ -47,6 +47,33 @@
     return window.location.origin + window.location.pathname;
   }
 
+  function extractOAuthErrorFromUrl() {
+    try {
+      const searchParams = new URLSearchParams(window.location.search || "");
+      const hashStr = String(window.location.hash || "").replace(/^#/, "");
+      const hashParams = new URLSearchParams(hashStr);
+      const errCode = searchParams.get("error") || hashParams.get("error") || "";
+      const errDesc =
+        searchParams.get("error_description") ||
+        hashParams.get("error_description") ||
+        "";
+      if (errCode || errDesc) {
+        return (errDesc || errCode).replace(/\+/g, " ");
+      }
+    } catch (e) {}
+    return "";
+  }
+
+  function hasAuthCallbackParams() {
+    const search = String(window.location.search || "");
+    const hash = String(window.location.hash || "");
+    return (
+      search.includes("code=") ||
+      hash.includes("access_token=") ||
+      hash.includes("refresh_token=")
+    );
+  }
+
   async function signInWithGoogle() {
     const client = getClient();
     if (!client) return { error: new Error("Chưa cấu hình Supabase.") };
@@ -191,6 +218,8 @@
     EXERCISES_CATALOG,
     getClient,
     getRedirectUrl,
+    extractOAuthErrorFromUrl,
+    hasAuthCallbackParams,
     signInWithGoogle,
     escapeHtml,
     formatDateTime,
