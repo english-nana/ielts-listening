@@ -1,0 +1,737 @@
+<!DOCTYPE html>
+<html lang="vi">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>IELTS LISTENING — Unit Three: Survival English (Tracks 53–67)</title>
+    <link rel="icon" href="data:,">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link rel="preconnect" href="https://cdnjs.cloudflare.com" crossorigin>
+    <link rel="preconnect" href="https://cdn.jsdelivr.net" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Be+Vietnam+Pro:ital,wght@0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,400&family=JetBrains+Mono:wght@500;600;700;800&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="style.css?v=1.0">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+</head>
+<body>
+
+    <!-- Full-Screen Auth & Mandatory Profile Setup Gate (Matches VSTEP Writing & Speaking Part 1) -->
+    <div id="listening-auth-gate"></div>
+
+    <div class="app-layout" id="main-app-layout" style="display: none;">
+        <!-- Mobile Sidebar Backdrop -->
+        <div class="ej-sidebar-backdrop" id="ej-sidebar-backdrop"></div>
+
+        <!-- Original Soft Neo-Brutalist Studio Sidebar (Auto-Hidden Inside Focus Lessons) -->
+        <aside class="ej-sidebar" id="ej-sidebar" aria-label="Điều hướng khóa học">
+            <div class="ej-sidebar-header">
+                <button type="button" class="ej-sb-logo-btn" data-open-view="home-dashboard" title="Về Tổng quan">
+                    <span class="ej-sb-logo-badge"><i class="fas fa-headphones-alt"></i></span>
+                    <div class="ej-sb-logo-text">
+                        <span class="ej-sb-logo-main">IELTS Listening</span>
+                        <span class="ej-sb-logo-sub">Survival English</span>
+                    </div>
+                </button>
+            </div>
+
+            <nav class="ej-sidebar-nav">
+                <div class="ej-sb-group">
+                    <button type="button" class="ej-sb-item active" data-open-view="home-dashboard" data-sb-view="home-dashboard" title="Tổng quan">
+                        <i class="fas fa-compass ej-sb-ico"></i>
+                        <span class="ej-sb-label">Tổng quan</span>
+                    </button>
+                    <button type="button" class="ej-sb-item" data-open-view="my-submissions" data-sb-view="my-submissions" title="Lịch sử nộp bài">
+                        <i class="fas fa-history ej-sb-ico"></i>
+                        <span class="ej-sb-label">Bài nghe đã nộp</span>
+                        <span class="ej-sb-count" id="sb-submissions-count" style="display: none;">0</span>
+                    </button>
+                    <button type="button" class="ej-sb-item" data-open-view="vocab-bank" data-sb-view="vocab-bank" title="Kho từ vựng & Phát âm">
+                        <i class="fas fa-book-open ej-sb-ico"></i>
+                        <span class="ej-sb-label">Kho Từ vựng</span>
+                        <span class="ej-sb-count" id="sb-vocab-count">15</span>
+                    </button>
+                </div>
+
+                <!-- SECTION 01 COLLAPSIBLE CARD (EX 01 - 08) -->
+                <div class="vs-sb-card" id="sb-card-sec1">
+                    <div class="vs-sb-card-head">
+                        <button type="button" class="ej-sb-item vs-sb-head-btn" data-open-view="section1-hub" data-sb-view="section1-hub" title="Phần 1 · Giao tiếp & Tình huống (Ex 01–08)">
+                            <span class="vs-sb-task-pill t1">P1</span>
+                            <span class="ej-sb-label">Tình huống Đời sống</span>
+                        </button>
+                        <button type="button" class="vs-sb-acc-toggle" data-sb-toggle="sb-card-sec1" aria-expanded="true" title="Đóng / Mở danh sách Phần 1">
+                            <i class="fas fa-chevron-down"></i>
+                        </button>
+                    </div>
+                    <div class="vs-sb-card-list" id="sb-list-sec1">
+                        <button type="button" class="vs-sb-lesson-btn" data-open-view="ly-thuyet"><span class="vs-sb-num">00</span><span>Chiến thuật &amp; Mục lục</span></button>
+                        <!-- Populated dynamically from listening-data.js -->
+                    </div>
+                </div>
+
+                <!-- SECTION 02 COLLAPSIBLE CARD (EX 09 - 15) -->
+                <div class="vs-sb-card" id="sb-card-sec2">
+                    <div class="vs-sb-card-head">
+                        <button type="button" class="ej-sb-item vs-sb-head-btn" data-open-view="section2-hub" data-sb-view="section2-hub" title="Phần 2 · Văn hóa, Truyền thông & Du lịch (Ex 09–15)">
+                            <span class="vs-sb-task-pill t2">P2</span>
+                            <span class="ej-sb-label">Văn hóa &amp; Học thuật</span>
+                        </button>
+                        <button type="button" class="vs-sb-acc-toggle" data-sb-toggle="sb-card-sec2" aria-expanded="true" title="Đóng / Mở danh sách Phần 2">
+                            <i class="fas fa-chevron-down"></i>
+                        </button>
+                    </div>
+                    <div class="vs-sb-card-list" id="sb-list-sec2">
+                        <!-- Populated dynamically from listening-data.js -->
+                    </div>
+                </div>
+            </nav>
+
+            <!-- Sidebar Footer: Progress Widget + Collapse Button -->
+            <div class="vs-sb-footer">
+                <div class="vs-sb-progress-card">
+                    <div class="vs-sb-progress-top">
+                        <span>Tiến độ hoàn thành</span>
+                        <strong id="sb-progress-ratio">0/15</strong>
+                    </div>
+                    <div class="vs-sb-progress-track">
+                        <div class="vs-sb-progress-fill" id="sb-progress-fill" style="width: 0%;"></div>
+                    </div>
+                </div>
+                <button type="button" class="vs-sb-collapse-footer-btn" id="ej-sidebar-collapse-btn" title="Thu gọn / Mở rộng thanh điều hướng">
+                    <i class="fas fa-angle-double-left" id="sb-collapse-icon"></i>
+                    <span class="ej-sb-label">Thu gọn menu</span>
+                </button>
+            </div>
+        </aside>
+
+        <!-- Main Workspace Column (Topbar + Content) -->
+        <div class="ej-main-shell">
+            <!-- Top Navigation Bar -->
+            <header class="dt-topbar">
+                <div class="dt-topbar-inner">
+                    <div class="dt-topbar-left-group">
+                        <!-- Mobile Hamburger -->
+                        <button type="button" class="ej-mobile-menu-btn" id="ej-mobile-menu-btn" title="Mở thanh điều hướng" aria-label="Mở menu">
+                            <i class="fas fa-bars"></i>
+                        </button>
+
+                        <!-- Dashboard Breadcrumb + Rounded Search Pill (Visible with Sidebar) -->
+                        <div class="vs-dashboard-topbar-left" id="ej-topbar-search-wrap">
+                            <span class="vs-section-crumb" id="vs-dashboard-crumb">Tổng quan · 15 Bài nghe</span>
+                            <div class="ej-topbar-search-wrap">
+                                <i class="fas fa-search ej-search-ico"></i>
+                                <input
+                                    type="text"
+                                    id="ej-quick-search-input"
+                                    class="ej-quick-search-input"
+                                    placeholder="Tìm bài nghe, chủ đề, track... (⌘K)"
+                                    autocomplete="off"
+                                />
+                                <div class="ej-search-dropdown" id="ej-search-dropdown" style="display: none;"></div>
+                            </div>
+                        </div>
+
+                        <!-- Focus Lesson Header (Visible ONLY inside a specific lesson when Sidebar hides) -->
+                        <div class="ej-focus-nav-group" id="ej-focus-nav-group" style="display: none;">
+                            <button type="button" class="nb-back-btn" id="topbar-back-btn">
+                                <i class="fas fa-arrow-left"></i>
+                                <span id="topbar-back-text">Quay lại</span>
+                            </button>
+                            <button type="button" class="dt-topbar-brand dt-brand-btn" id="topbar-home-btn" data-open-view="home-dashboard" title="Về trang Tổng quan">
+                                <span class="dt-brand-badge"><i class="fas fa-headphones-alt"></i></span>
+                                <div class="dt-brand-meta">
+                                    <span class="dt-brand-tag" id="topbar-brand-tag">BASIC IELTS LISTENING · UNIT 3</span>
+                                    <span class="dt-brand-title" id="topbar-brand-title">Survival English</span>
+                                </div>
+                            </button>
+                            <span class="dt-topbar-divider" id="topbar-context-divider" style="display: none;" aria-hidden="true"></span>
+                            <span class="dt-topbar-context" id="topbar-context-label" style="display: none;"></span>
+                        </div>
+                    </div>
+
+                    <div class="dt-topbar-right-group">
+                        <a href="./teacher.html" class="top-pill-btn teacher-nav-pill" id="topbar-teacher-link" style="display: none;">
+                            👨‍🏫 Quản lý &amp; Xem bài học viên
+                        </a>
+                        <div class="notif-menu-wrap" id="topbar-notif-wrap" style="display: none;">
+                            <button type="button" class="notif-bell-btn" id="topbar-notif-btn" title="Thông báo nhận xét của Giáo viên" aria-expanded="false">
+                                <i class="far fa-bell"></i>
+                                <span class="notif-unread-badge" id="topbar-notif-badge" style="display: none;">0</span>
+                            </button>
+                            <div class="notif-dropdown" id="topbar-notif-dropdown" style="display: none;">
+                                <div class="notif-dropdown-header">
+                                    <span>Nhận xét từ Giáo viên</span>
+                                    <span class="notif-header-sub" id="topbar-notif-sub">Cập nhật tự động</span>
+                                </div>
+                                <div class="notif-dropdown-list" id="topbar-notif-list"></div>
+                            </div>
+                        </div>
+                        <button type="button" class="user-account-pill" id="topbar-account-pill" style="display: none;" title="Bấm để đăng xuất">
+                            <span class="user-initials" id="topbar-user-initials">HV</span>
+                            <span id="topbar-user-name">Học viên</span>
+                            <span class="topbar-logout-hint">· Đăng xuất</span>
+                        </button>
+                    </div>
+                </div>
+            </header>
+
+            <!-- Main Content Area -->
+            <main class="content-area">
+                <div class="container-tab">
+
+                    <!-- ==================== HOME DASHBOARD ==================== -->
+                    <div class="tab-content active" id="home-dashboard">
+                        <div class="nb-page-container">
+                            <header class="nb-course-header nb-home-header">
+                                <div class="nb-course-code">BASIC-IELTS-LISTENING · UNIT THREE</div>
+                                <h1 class="nb-course-title">SURVIVAL ENGLISH — LUYỆN NGHE IELTS</h1>
+                                <p class="nb-course-subtitle">Trọn bộ 15 bài tập thực hành nghe giao tiếp &amp; học thuật thiết yếu (Track 53.MP3 – 67.MP3), kèm Pre-Listening Word Bank phát âm chuẩn, bài tập tương tác chấm điểm tức thì, Tapescript dịch nghĩa từng câu và Đáp án đối chiếu.</p>
+                            </header>
+
+                            <!-- Quick Student Stats Row -->
+                            <div class="il-home-stats-row">
+                                <div class="dt-stat-card">
+                                    <div class="dt-stat-top">
+                                        <span class="dt-num-badge">15</span>
+                                        <span class="dt-stat-tag">TRACKS 53–67</span>
+                                    </div>
+                                    <div class="dt-stat-value" id="home-stat-completed">0 / 15 bài</div>
+                                    <p class="dt-stat-desc">Số bài nghe bạn đã hoàn thành và nộp kết quả trong Unit Three.</p>
+                                </div>
+                                <div class="dt-stat-card">
+                                    <div class="dt-stat-top">
+                                        <span class="dt-num-badge"><i class="fas fa-bullseye"></i></span>
+                                        <span class="dt-stat-tag">ĐỘ CHÍNH XÁC</span>
+                                    </div>
+                                    <div class="dt-stat-value" id="home-stat-avg">—</div>
+                                    <p class="dt-stat-desc">Tỷ lệ trả lời đúng trung bình và ước lượng Band IELTS Listening.</p>
+                                </div>
+                                <div class="dt-stat-card">
+                                    <div class="dt-stat-top">
+                                        <span class="dt-num-badge"><i class="fas fa-layer-group"></i></span>
+                                        <span class="dt-stat-tag">CẤU TRÚC 3 PHẦN</span>
+                                    </div>
+                                    <div class="dt-stat-value">7 Dạng Câu Hỏi</div>
+                                    <p class="dt-stat-desc">Note, Form, Table, Summary, Map Labelling, MCQ &amp; True/False.</p>
+                                </div>
+                            </div>
+
+                            <div class="nb-section-bar">
+                                <h2 class="nb-section-title">Chọn chặng luyện tập · 2 Phần &amp; Công cụ bổ trợ</h2>
+                                <span class="nb-section-meta">IELTS Part 1 – Part 4 · Track 53–67</span>
+                            </div>
+
+                            <div class="nb-units-grid">
+                                <!-- SECTION 1 CARD -->
+                                <button type="button" class="nb-unit-card" data-open-view="section1-hub">
+                                    <div class="nb-card-top">
+                                        <span class="nb-unit-num">01</span>
+                                        <span class="nb-status-badge status-ready" id="home-sec1-badge">0/8 đã nộp</span>
+                                    </div>
+                                    <h3 class="nb-card-title">Section 1 · Daily Survival &amp; Dialogues</h3>
+                                    <div class="nb-card-vi">Tình huống Đời sống &amp; Bản đồ (Ex 01 – Ex 08)</div>
+                                    <p class="nb-card-desc">Gồm Chiến thuật nghe IELTS và 8 bài nghe trọng tâm: Health problems, Camera shop, Restaurant, Hotel reception, Christmas, Stonehenge, Marriage và bản đồ University campus.</p>
+                                    <div class="nb-card-footer">
+                                        <div class="nb-card-meta">
+                                            <span><i class="fas fa-headphones"></i> 53.MP3 – 60.MP3</span>
+                                            <span><i class="far fa-file-alt"></i> 8 bài nghe</span>
+                                        </div>
+                                        <span class="nb-card-cta">Vào học <i class="fas fa-arrow-right"></i></span>
+                                    </div>
+                                </button>
+
+                                <!-- SECTION 2 CARD -->
+                                <button type="button" class="nb-unit-card" data-open-view="section2-hub">
+                                    <div class="nb-card-top">
+                                        <span class="nb-unit-num">02</span>
+                                        <span class="nb-status-badge status-ready" id="home-sec2-badge">0/7 đã nộp</span>
+                                    </div>
+                                    <h3 class="nb-card-title">Section 2 · Culture, Media &amp; Academic Talks</h3>
+                                    <div class="nb-card-vi">Văn hóa, Truyền thông &amp; Chuyên đề (Ex 09 – Ex 15)</div>
+                                    <p class="nb-card-desc">7 bài nghe dài nâng cao độ tập trung &amp; tốc độ bắt từ khóa: New Orleans Jazz, Talking to a landlady, The news, London West End, Trip to Belfast, UK TV &amp; Radio và British Sports.</p>
+                                    <div class="nb-card-footer">
+                                        <div class="nb-card-meta">
+                                            <span><i class="fas fa-headphones"></i> 61.MP3 – 67.MP3</span>
+                                            <span><i class="far fa-file-alt"></i> 7 bài nghe</span>
+                                        </div>
+                                        <span class="nb-card-cta">Vào học <i class="fas fa-arrow-right"></i></span>
+                                    </div>
+                                </button>
+
+                                <!-- THEORY & OVERVIEW CARD -->
+                                <button type="button" class="nb-unit-card" data-open-view="ly-thuyet">
+                                    <div class="nb-card-top">
+                                        <span class="nb-unit-num num-muted">00</span>
+                                        <span class="nb-status-badge status-ready">Nền tảng</span>
+                                    </div>
+                                    <h3 class="nb-card-title">IELTS Listening Guide &amp; Track Overview</h3>
+                                    <div class="nb-card-vi">Chiến thuật Nghe 3 Bước &amp; Mục lục 15 Bài</div>
+                                    <p class="nb-card-desc">Quy trình Pre–While–Post Listening, các quy tắc vàng tránh mất điểm oan (giới hạn từ, số nhiều, bẫy đổi ý Distractors) và bảng mục lục truy cập nhanh 15 Track.</p>
+                                    <div class="nb-card-footer">
+                                        <div class="nb-card-meta">
+                                            <span><i class="fas fa-compass"></i> 7 dạng bài</span>
+                                            <span><i class="fas fa-list-ol"></i> Mục lục 15 bài</span>
+                                        </div>
+                                        <span class="nb-card-cta">Xem ngay <i class="fas fa-arrow-right"></i></span>
+                                    </div>
+                                </button>
+
+                                <!-- VOCABULARY BANK CARD -->
+                                <button type="button" class="nb-unit-card" data-open-view="vocab-bank">
+                                    <div class="nb-card-top">
+                                        <span class="nb-unit-num num-muted"><i class="fas fa-volume-up"></i></span>
+                                        <span class="nb-status-badge status-ready">Phát âm &amp; IPA</span>
+                                    </div>
+                                    <h3 class="nb-card-title">Survival English Vocabulary Bank</h3>
+                                    <div class="nb-card-vi">Kho Từ vựng Pre-Listening &amp; Gạch chân Script</div>
+                                    <p class="nb-card-desc">Tổng hợp toàn bộ từ vựng trọng tâm của cả 15 bài nghe kèm phiên âm IPA, nghĩa tiếng Việt, nút nghe phát âm chuẩn và chế độ ẩn nghĩa để tự kiểm tra trí nhớ.</p>
+                                    <div class="nb-card-footer">
+                                        <div class="nb-card-meta">
+                                            <span><i class="fas fa-spell-check"></i> 150+ cụm từ</span>
+                                            <span><i class="fas fa-eye-slash"></i> Chế độ ôn tập</span>
+                                        </div>
+                                        <span class="nb-card-cta">Ôn từ vựng <i class="fas fa-arrow-right"></i></span>
+                                    </div>
+                                </button>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- ==================== SECTION 1 HUB (EX 01 - 08) ==================== -->
+                    <div class="tab-content" id="section1-hub">
+                        <div class="nb-page-container">
+                            <button type="button" class="nb-inline-back" data-open-view="home-dashboard">
+                                <i class="fas fa-arrow-left"></i> Về Tổng quan
+                            </button>
+
+                            <header class="nb-course-header">
+                                <div class="nb-course-code">UNIT THREE · SECTION 01 · TRACKS 53–60</div>
+                                <h1 class="nb-course-title">TÌNH HUỐNG ĐỜI SỐNG &amp; BẢN ĐỒ</h1>
+                                <p class="nb-course-subtitle">Chiến thuật chung và 8 bài luyện nghe giao tiếp sinh tồn (Exercises 01 – 08: Health, Shopping, Restaurant, Hotel, Christmas, Stonehenge, Marriage, Campus Map).</p>
+                            </header>
+
+                            <div class="nb-section-bar">
+                                <h2 class="nb-section-title">Danh sách bài học · 1 Lý thuyết + 8 Bài nghe</h2>
+                                <span class="nb-section-meta">53.MP3 – 60.MP3</span>
+                            </div>
+
+                            <div class="nb-units-grid" id="section1-cards-grid">
+                                <!-- Rendered dynamically from listening-data.js -->
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- ==================== SECTION 2 HUB (EX 09 - 15) ==================== -->
+                    <div class="tab-content" id="section2-hub">
+                        <div class="nb-page-container">
+                            <button type="button" class="nb-inline-back" data-open-view="home-dashboard">
+                                <i class="fas fa-arrow-left"></i> Về Tổng quan
+                            </button>
+
+                            <header class="nb-course-header">
+                                <div class="nb-course-code">UNIT THREE · SECTION 02 · TRACKS 61–67</div>
+                                <h1 class="nb-course-title">VĂN HÓA, TRUYỀN THÔNG &amp; HỌC THUẬT</h1>
+                                <p class="nb-course-subtitle">7 bài luyện nghe nâng cao về âm nhạc, nội quy nhà trọ, bản tin thời sự, du lịch London – Belfast, hệ thống BBC/IBA và thể thao Anh Quốc (Exercises 09 – 15).</p>
+                            </header>
+
+                            <div class="nb-section-bar">
+                                <h2 class="nb-section-title">Danh sách bài học · 7 Bài nghe</h2>
+                                <span class="nb-section-meta">61.MP3 – 67.MP3</span>
+                            </div>
+
+                            <div class="nb-units-grid" id="section2-cards-grid">
+                                <!-- Rendered dynamically from listening-data.js -->
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- ==================== MY SUBMISSIONS HISTORY ==================== -->
+                    <div class="tab-content" id="my-submissions">
+                        <div class="nb-page-container">
+                            <button type="button" class="nb-inline-back" data-open-view="home-dashboard">
+                                <i class="fas fa-arrow-left"></i> Về Tổng quan
+                            </button>
+
+                            <header class="nb-course-header">
+                                <div class="nb-course-code">IELTS-LISTENING · HISTORY</div>
+                                <h1 class="nb-course-title">LỊCH SỬ BÀI NGHE ĐÃ NỘP</h1>
+                                <p class="nb-course-subtitle">Theo dõi điểm số, ước lượng Band IELTS, đáp án từng câu và nhận xét của Giáo viên cho toàn bộ bài luyện nghe bạn đã nộp.</p>
+                            </header>
+
+                            <div class="nb-section-bar">
+                                <h2 class="nb-section-title" id="my-submissions-heading">Bài nghe đã nộp · 0 bài</h2>
+                                <span class="nb-section-meta">Đồng bộ Supabase Cloud</span>
+                            </div>
+
+                            <div class="ej-history-list" id="my-submissions-list"></div>
+                        </div>
+                    </div>
+
+                    <!-- ==================== VOCABULARY BANK & FLASHCARDS ==================== -->
+                    <div class="tab-content" id="vocab-bank">
+                        <div class="nb-page-container">
+                            <button type="button" class="nb-inline-back" data-open-view="home-dashboard">
+                                <i class="fas fa-arrow-left"></i> Về Tổng quan
+                            </button>
+
+                            <header class="nb-course-header">
+                                <div class="nb-course-code">UNIT THREE · PRE-LISTENING &amp; SCRIPT VOCABULARY</div>
+                                <h1 class="nb-course-title">KHO TỪ VỰNG SURVIVAL ENGLISH</h1>
+                                <p class="nb-course-subtitle">Đọc to 2–3 lần trước khi nghe để tai quen mặt âm. Bấm vào biểu tượng loa để nghe phát âm tiếng Anh hoặc bật chế độ Ẩn nghĩa để tự kiểm tra.</p>
+                            </header>
+
+                            <div class="il-vocab-toolbar">
+                                <div class="il-vocab-toolbar-left">
+                                    <input
+                                        type="text"
+                                        id="vocab-search-input"
+                                        class="form-input"
+                                        style="height: 38px; width: 260px; font-size: 13.5px;"
+                                        placeholder="🔍 Tìm từ tiếng Anh hoặc tiếng Việt..."
+                                    />
+                                    <select id="vocab-filter-ex" class="form-input" style="height: 38px; width: auto; font-size: 13px; font-weight: 700;">
+                                        <option value="all">Tất cả 15 bài nghe</option>
+                                    </select>
+                                </div>
+                                <div class="il-vocab-toolbar-right">
+                                    <button type="button" class="nb-back-btn" id="btn-toggle-hide-vi">
+                                        <i class="far fa-eye-slash"></i>
+                                        <span>Chế độ ôn tập: Ẩn nghĩa</span>
+                                    </button>
+                                </div>
+                            </div>
+
+                            <div class="nb-section-bar">
+                                <h2 class="nb-section-title" id="vocab-bank-count-label">Đang hiển thị từ vựng</h2>
+                                <span class="nb-section-meta">Bấm vào từng thẻ để nghe phát âm / lật nghĩa</span>
+                            </div>
+
+                            <div class="il-vocab-grid" id="vocab-bank-grid"></div>
+                        </div>
+                    </div>
+
+                    <!-- ==================== OVERVIEW THEORY & TRACK TABLE (#ly-thuyet) ==================== -->
+                    <div class="tab-content" id="ly-thuyet">
+                        <div class="dt-overview-container">
+                            <header class="dt-hero-header">
+                                <div class="dt-code-tag">BASIC IELTS LISTENING · UNIT THREE · OVERVIEW</div>
+                                <h1 class="dt-h1">Chiến Thuật Luyện Nghe &amp; Mục Lục 15 Bài Tập</h1>
+                                <p class="dt-subtitle">Nắm chắc quy trình nghe 3 bước chuẩn IELTS (Pre – While – Post Listening), các bẫy thường gặp trong đề và truy cập nhanh từng bài từ Track 53.MP3 đến 67.MP3.</p>
+                            </header>
+
+                            <!-- 3 STAT CARDS -->
+                            <section class="dt-stats-grid" aria-label="Thông tin chung">
+                                <div class="dt-stat-card">
+                                    <div class="dt-stat-top">
+                                        <span class="dt-num-badge">01</span>
+                                        <span class="dt-stat-tag">CẤU TRÚC UNIT 3</span>
+                                    </div>
+                                    <div class="dt-stat-value">15 Bài Tập (53–67)</div>
+                                    <p class="dt-stat-desc">Đầy đủ 3 phần: Listening Worksheets, Tapescripts gạch chân từ vựng &amp; Answer Key đối chiếu.</p>
+                                </div>
+                                <div class="dt-stat-card">
+                                    <div class="dt-stat-top">
+                                        <span class="dt-num-badge">02</span>
+                                        <span class="dt-stat-tag">KỸ NĂNG TRỌNG TÂM</span>
+                                    </div>
+                                    <div class="dt-stat-value">IELTS Part 1 – Part 4</div>
+                                    <p class="dt-stat-desc">Đi từ hội thoại giao tiếp đời sống (mua sắm, nhà hàng, khách sạn) đến bài thuyết trình văn hóa, tin tức.</p>
+                                </div>
+                                <div class="dt-stat-card">
+                                    <div class="dt-stat-top">
+                                        <span class="dt-num-badge">03</span>
+                                        <span class="dt-stat-tag">PHƯƠNG PHÁP HỌC</span>
+                                    </div>
+                                    <div class="dt-stat-value">Nghe Chủ Động 3 Bước</div>
+                                    <p class="dt-stat-desc">Học Word Bank &amp; IPA trước → Nghe làm bài &amp; tự chấm → Mở Tapescript xem dẫn chứng và shadowing.</p>
+                                </div>
+                            </section>
+
+                            <!-- 3 CORE LISTENING STEPS -->
+                            <section class="dt-neo-card">
+                                <div class="dt-card-head">
+                                    <span class="dt-head-badge"><i class="fas fa-compass"></i> QUY TRÌNH LUYỆN NGHE CHUẨN</span>
+                                    <h2 class="dt-card-title">3 Bước Khai Thác Tối Đa Mỗi Bài Nghe</h2>
+                                </div>
+
+                                <div class="dt-questions-stack">
+                                    <div class="dt-q-item">
+                                        <div class="dt-q-num">1</div>
+                                        <div class="dt-q-body">
+                                            <h3 class="dt-q-title">Trước khi nghe (Pre-Listening · 1–2 phút)</h3>
+                                            <p class="dt-q-text">Bấm đọc to toàn bộ <strong>Pre-Listening Word Bank &amp; Pronunciation</strong> 2–3 lần để não nhận diện âm thanh trước. Sau đó đọc lướt phiếu bài tập, chú ý <strong>Word Limit</strong> (ví dụ: <em>NO MORE THAN THREE WORDS</em>) và dự đoán từ loại cần điền (danh từ số ít/nhiều, số tiền, giờ, địa danh, tính từ).</p>
+                                        </div>
+                                    </div>
+
+                                    <div class="dt-q-item">
+                                        <div class="dt-q-num">2</div>
+                                        <div class="dt-q-body">
+                                            <h3 class="dt-q-title">Trong khi nghe (While-Listening · 7 dạng câu hỏi trọng tâm) <span class="dt-q-sub">— bấm để mở bài tiêu biểu</span></h3>
+                                            <div class="dt-purpose-grid">
+                                                <button type="button" class="dt-purpose-card" data-open-exercise="ex-01">
+                                                    <span class="dt-p-index">01</span>
+                                                    <span class="dt-p-text">
+                                                        <strong>Note Completion</strong>
+                                                        <em>Ex 01, 02, 12, 13, 14</em>
+                                                    </span>
+                                                </button>
+                                                <button type="button" class="dt-purpose-card" data-open-exercise="ex-04">
+                                                    <span class="dt-p-index">02</span>
+                                                    <span class="dt-p-text">
+                                                        <strong>Form Completion</strong>
+                                                        <em>Ex 04 · Hotel Check-in</em>
+                                                    </span>
+                                                </button>
+                                                <button type="button" class="dt-purpose-card" data-open-exercise="ex-03">
+                                                    <span class="dt-p-index">03</span>
+                                                    <span class="dt-p-text">
+                                                        <strong>Table / Matching</strong>
+                                                        <em>Ex 03, 10, 13, 14, 15</em>
+                                                    </span>
+                                                </button>
+                                                <button type="button" class="dt-purpose-card" data-open-exercise="ex-05">
+                                                    <span class="dt-p-index">04</span>
+                                                    <span class="dt-p-text">
+                                                        <strong>Sentence Completion</strong>
+                                                        <em>Ex 05, 14</em>
+                                                    </span>
+                                                </button>
+                                                <button type="button" class="dt-purpose-card" data-open-exercise="ex-06">
+                                                    <span class="dt-p-index">05</span>
+                                                    <span class="dt-p-text">
+                                                        <strong>Summary Completion</strong>
+                                                        <em>Ex 06, 07, 09, 11</em>
+                                                    </span>
+                                                </button>
+                                                <button type="button" class="dt-purpose-card" data-open-exercise="ex-08">
+                                                    <span class="dt-p-index">06</span>
+                                                    <span class="dt-p-text">
+                                                        <strong>Map Labelling</strong>
+                                                        <em>Ex 08 · Campus Map</em>
+                                                    </span>
+                                                </button>
+                                                <button type="button" class="dt-purpose-card" data-open-exercise="ex-12">
+                                                    <span class="dt-p-index">07</span>
+                                                    <span class="dt-p-text">
+                                                        <strong>MCQ / Pick List / T-F</strong>
+                                                        <em>Ex 11, 12, 15</em>
+                                                    </span>
+                                                </button>
+                                            </div>
+                                        </div>
+                                    </div>
+
+                                    <div class="dt-q-item">
+                                        <div class="dt-q-num">3</div>
+                                        <div class="dt-q-body">
+                                            <h3 class="dt-q-title">Sau khi nghe (Post-Listening · Chữa bài &amp; Nghe sâu)</h3>
+                                            <p class="dt-q-text">Bấm <strong>Kiểm tra &amp; Nộp bài</strong> để xem câu đúng/sai, sau đó mở tab <strong>Tapescript</strong>, bật chế độ <strong>Hiện dẫn chứng đáp án</strong> và dùng chức năng <strong>Lặp đoạn A–B</strong> + điều chỉnh tốc độ (0.75x – 1.25x) để nghe lại những chỗ bạn nghe hụt hoặc bị dính bẫy.</p>
+                                        </div>
+                                    </div>
+                                </div>
+
+                                <div class="dt-warning-banner">
+                                    <i class="fas fa-exclamation-triangle"></i>
+                                    <div><strong>4 Quy tắc vàng tránh mất điểm oan:</strong> (1) Luôn kiểm tra giới hạn từ <em>NO MORE THAN THREE WORDS</em>; (2) Chú ý đuôi số nhiều <code>-s/-es</code> (<em>liquids, remains, buildings, pictures, countries</em>); (3) Cảnh giác bẫy đổi ý (<em>Ex 02: £45 vs £50; Ex 03: salmon → roast beef</em>); (4) Chính tả Anh-Anh &amp; Anh-Mỹ (<em>colour/color, specialised/specialized</em>) đều hợp lệ.</div>
+                                </div>
+                            </section>
+
+                            <!-- TRACK OVERVIEW TABLE (MATCHING PDF PAGE 1) -->
+                            <section class="dt-neo-card">
+                                <div class="dt-card-head">
+                                    <span class="dt-head-badge"><i class="fas fa-headphones-alt"></i> MỤC LỤC CÁC BÀI NGHE (TRACK OVERVIEW)</span>
+                                    <h2 class="dt-card-title">Trọn Bộ 15 Bài Tập · Survival English (53.MP3 – 67.MP3)</h2>
+                                </div>
+                                <div class="ej-table-wrap">
+                                    <table class="ej-vocab-table il-track-overview-table">
+                                        <thead>
+                                            <tr>
+                                                <th style="width: 72px;">Bài</th>
+                                                <th>Chủ đề (Topic)</th>
+                                                <th style="width: 130px;">IELTS Part</th>
+                                                <th style="width: 220px;">Dạng câu hỏi</th>
+                                                <th style="width: 105px;">Audio</th>
+                                                <th style="width: 110px;">Thao tác</th>
+                                            </tr>
+                                        </thead>
+                                        <tbody id="theory-track-overview-tbody"></tbody>
+                                    </table>
+                                </div>
+                            </section>
+                        </div>
+                    </div>
+
+                    <!-- ==================== LISTENING FOCUS STUDIO (SPLIT-SCREEN WORKSPACE) ==================== -->
+                    <div class="tab-content" id="listening-studio">
+                        <div class="draft-lesson-view ej-essay-view">
+
+                            <!-- Pinned Full-Width Neo-Brutalist Audio Player Strip -->
+                            <div class="il-audio-bar" id="il-audio-bar">
+                                <div class="il-audio-left">
+                                    <button type="button" class="il-audio-play-btn" id="audio-play-btn" title="Phát / Tạm dừng (Space)">
+                                        <i class="fas fa-play" id="audio-play-icon"></i>
+                                    </button>
+                                    <button type="button" class="il-audio-skip-btn" id="audio-back-btn" title="Tua lùi 5 giây">
+                                        <i class="fas fa-undo-alt"></i><span>-5s</span>
+                                    </button>
+                                    <button type="button" class="il-audio-skip-btn" id="audio-fwd-btn" title="Tua tới 5 giây">
+                                        <span>+5s</span><i class="fas fa-redo-alt"></i>
+                                    </button>
+                                    <span class="il-track-pill" id="audio-track-pill">
+                                        <i class="fas fa-headphones"></i>
+                                        <span id="audio-track-name">53.MP3</span>
+                                    </span>
+                                </div>
+
+                                <div class="il-audio-center" id="audio-seek-group">
+                                    <span class="il-audio-time" id="audio-cur-time">00:00</span>
+                                    <div class="il-audio-seek-wrap">
+                                        <input type="range" id="audio-seek-slider" class="il-audio-slider" min="0" max="100" step="0.1" value="0" aria-label="Tiến độ bài nghe" />
+                                        <div class="il-ab-markers" id="audio-ab-markers"></div>
+                                    </div>
+                                    <span class="il-audio-time" id="audio-dur-time">00:00</span>
+                                </div>
+
+                                <div class="il-audio-tts-status" id="audio-tts-status" style="display: none;">
+                                    <span class="il-tts-badge"><i class="fas fa-robot"></i> Giọng đọc AI (Thiếu 62.mp3)</span>
+                                    <span class="il-tts-progress" id="audio-tts-progress">Sẵn sàng đọc hội thoại Sam &amp; Mrs. Tiger</span>
+                                </div>
+
+                                <div class="il-audio-right">
+                                    <button type="button" class="il-audio-tool-btn" id="audio-ab-btn" title="Lặp đoạn A-B (Bấm lần 1 đặt điểm A, lần 2 đặt điểm B, lần 3 tắt)">
+                                        <i class="fas fa-sync-alt"></i>
+                                        <span id="audio-ab-label">A-B</span>
+                                    </button>
+                                    <div class="il-speed-group" role="group" aria-label="Tốc độ phát">
+                                        <button type="button" class="il-speed-btn" data-audio-rate="0.75">0.75x</button>
+                                        <button type="button" class="il-speed-btn" data-audio-rate="0.9">0.9x</button>
+                                        <button type="button" class="il-speed-btn active" data-audio-rate="1">1x</button>
+                                        <button type="button" class="il-speed-btn" data-audio-rate="1.25">1.25x</button>
+                                    </div>
+                                    <button type="button" class="il-audio-tool-btn" id="audio-mute-btn" title="Tắt / Bật âm thanh">
+                                        <i class="fas fa-volume-up" id="audio-mute-icon"></i>
+                                    </button>
+                                </div>
+
+                                <audio id="studio-audio-el" preload="metadata"></audio>
+                            </div>
+
+                            <!-- Resizable 2-Pane Split Workspace (Exact VSTEP Writing Architecture) -->
+                            <div class="draft-split-workspace" id="listening-split-workspace">
+
+                                <!-- LEFT PANE: Pre-Listening Word Bank / Tapescript / Answer Key -->
+                                <section class="draft-split-pane draft-pane-left ej-pane-left" aria-label="Từ vựng, Tapescript và Đáp án">
+                                    <div class="draft-pane-sticky-header ej-pane-header">
+                                        <div class="draft-pane-header-left">
+                                            <select id="studio-ex-select" class="draft-prompt-select" aria-label="Chọn bài nghe">
+                                                <!-- Populated dynamically -->
+                                            </select>
+                                        </div>
+
+                                        <div class="draft-level-pills-group" role="tablist" aria-label="Chế độ hỗ trợ học">
+                                            <button type="button" class="draft-level-btn active" data-left-tab="pre" role="tab">Từ vựng &amp; Mẹo</button>
+                                            <button type="button" class="draft-level-btn" data-left-tab="script" role="tab">Tapescript</button>
+                                            <button type="button" class="draft-level-btn" data-left-tab="key" role="tab">Đáp án</button>
+                                        </div>
+                                    </div>
+
+                                    <div class="draft-pane-scroll-body ej-scroll-body" id="studio-left-scroll">
+                                        <div class="draft-pane-inner-container ej-inner-container">
+                                            <div id="left-pane-pre" class="il-left-tab-panel"></div>
+                                            <div id="left-pane-script" class="il-left-tab-panel" style="display: none;"></div>
+                                            <div id="left-pane-key" class="il-left-tab-panel" style="display: none;"></div>
+                                        </div>
+                                    </div>
+                                </section>
+
+                                <!-- Draggable Split Resizer -->
+                                <div class="draft-split-resizer ej-resizer" id="listening-split-resizer" title="Kéo để thay đổi kích thước 2 khung"></div>
+
+                                <!-- RIGHT PANE: Interactive IELTS Listening Worksheet -->
+                                <section class="draft-split-pane draft-pane-right ej-pane-right" aria-label="Phiếu bài tập nghe tương tác">
+                                    <div class="draft-pane-sticky-header ej-pane-header">
+                                        <div class="draft-pane-header-left">
+                                            <span class="ej-header-pill" id="studio-part-pill">IELTS Part 1</span>
+                                            <span class="ej-pane-heading" id="studio-type-heading">Note Completion</span>
+                                        </div>
+
+                                        <div class="draft-pane-header-actions">
+                                            <div class="il-worksheet-tools">
+                                                <button type="button" class="font-btn" id="btn-font-dec" title="Giảm cỡ chữ">A-</button>
+                                                <button type="button" class="font-btn default-btn" id="btn-font-reset" title="Cỡ chữ mặc định">A</button>
+                                                <button type="button" class="font-btn" id="btn-font-inc" title="Tăng cỡ chữ">A+</button>
+                                                <button type="button" class="font-btn highlight-toggle-btn" id="btn-highlight-toggle" title="Bật/tắt bút nhớ đánh dấu từ khóa">
+                                                    <i class="fas fa-highlighter"></i> Bút nhớ
+                                                </button>
+                                            </div>
+                                            <button type="button" class="draft-timer-pill ej-timer-pill" id="studio-timer-btn" title="Bấm để bắt đầu / tạm dừng đồng hồ đếm ngược">
+                                                <i class="far fa-clock"></i>
+                                                <span id="studio-timer-display">05:00</span>
+                                            </button>
+                                        </div>
+                                    </div>
+
+                                    <div class="draft-pane-scroll-body ej-scroll-body" id="studio-right-scroll">
+                                        <div class="draft-pane-inner-container ej-inner-container">
+                                            <div class="draft-exercise-card il-worksheet-card">
+                                                <header class="draft-exercise-card-header">
+                                                    <div class="draft-exercise-head-left">
+                                                        <span class="draft-exercise-num-pill" id="ws-ex-num">EX 01</span>
+                                                        <div>
+                                                            <h2 class="draft-exercise-title" id="ws-ex-title">Health problems</h2>
+                                                            <p class="draft-exercise-instruction" id="ws-ex-instruction"></p>
+                                                        </div>
+                                                    </div>
+                                                    <span class="il-word-limit-badge" id="ws-word-limit" style="display: none;"></span>
+                                                </header>
+
+                                                <div class="draft-exercise-card-body il-worksheet-body" id="ws-body-container">
+                                                    <!-- Interactive worksheet rendered here -->
+                                                </div>
+
+                                                <footer class="draft-exercise-card-footer">
+                                                    <div class="il-footer-left">
+                                                        <span class="draft-writing-status-text" id="ws-answered-status">Đã điền 0/7 câu</span>
+                                                        <span class="il-autosave-hint" id="ws-autosave-hint">Tự động lưu nháp</span>
+                                                    </div>
+                                                    <div class="il-footer-actions">
+                                                        <button type="button" class="draft-mini-btn" id="ws-prev-btn" title="Bài trước">
+                                                            <i class="fas fa-chevron-left"></i> Trước
+                                                        </button>
+                                                        <button type="button" class="draft-mini-btn" id="ws-reset-btn" title="Xóa đáp án làm lại">
+                                                            <i class="fas fa-redo"></i> Làm lại
+                                                        </button>
+                                                        <button type="button" class="draft-submit-btn" id="ws-submit-btn">
+                                                            <i class="fas fa-check-circle"></i> Kiểm tra &amp; Nộp bài
+                                                        </button>
+                                                        <button type="button" class="draft-mini-btn" id="ws-next-btn" title="Bài tiếp theo">
+                                                            Tiếp <i class="fas fa-chevron-right"></i>
+                                                        </button>
+                                                    </div>
+                                                </footer>
+                                            </div>
+
+                                            <!-- Instant Score Result Box -->
+                                            <div id="ws-result-summary-box" style="display: none;"></div>
+
+                                            <!-- Teacher Feedback & Cloud Status Box -->
+                                            <div id="ws-teacher-feedback-box" style="display: none;"></div>
+                                        </div>
+                                    </div>
+                                </section>
+                            </div>
+                        </div>
+                    </div>
+
+                </div>
+            </main>
+        </div>
+    </div>
+
+    <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
+    <script src="supabase-config.js?v=1.1"></script>
+    <script src="supabase-client.js?v=1.0"></script>
+    <script src="listening-data.js?v=1.0"></script>
+    <script src="script.js?v=1.0"></script>
+</body>
+</html>
