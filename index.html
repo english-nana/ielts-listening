@@ -10,7 +10,7 @@
     <link rel="preconnect" href="https://cdnjs.cloudflare.com" crossorigin>
     <link rel="preconnect" href="https://cdn.jsdelivr.net" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Be+Vietnam+Pro:ital,wght@0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,400&family=JetBrains+Mono:wght@500;600;700;800&display=swap" rel="stylesheet">
-    <link rel="stylesheet" href="style.css?v=1.5">
+    <link rel="stylesheet" href="style.css?v=1.6">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
 </head>
 <body>
@@ -574,11 +574,14 @@
                                     <button type="button" class="il-audio-skip-btn il-audio-icon-btn" id="audio-fwd-btn" title="Tua tới 5 giây" aria-label="Tua tới 5 giây">
                                         <i class="fas fa-redo-alt"></i>
                                     </button>
-                                    <div class="il-audio-time-pill" id="audio-seek-group">
-                                        <span class="il-audio-time" id="audio-cur-time">00:00</span>
-                                        <span class="il-audio-time-sep">/</span>
-                                        <span class="il-audio-time" id="audio-dur-time">00:00</span>
+                                </div>
+
+                                <div class="il-audio-center" id="audio-seek-group">
+                                    <span class="il-audio-time" id="audio-cur-time">00:00</span>
+                                    <div class="il-audio-seek-wrap">
+                                        <input type="range" id="audio-seek-slider" class="il-audio-slider" min="0" max="100" step="0.1" value="0" aria-label="Tiến độ bài nghe" />
                                     </div>
+                                    <span class="il-audio-time" id="audio-dur-time">00:00</span>
                                 </div>
 
                                 <div class="il-audio-tts-status" id="audio-tts-status" style="display: none;">
@@ -587,10 +590,6 @@
                                 </div>
 
                                 <div class="il-audio-right">
-                                    <button type="button" class="il-audio-tool-btn" id="audio-ab-btn" title="Lặp đoạn A-B (Bấm lần 1 đặt điểm A, lần 2 đặt điểm B, lần 3 tắt)">
-                                        <i class="fas fa-sync-alt"></i>
-                                        <span id="audio-ab-label">A-B</span>
-                                    </button>
                                     <button type="button" class="il-audio-tool-btn" id="audio-speed-btn" title="Đổi tốc độ phát (0.75x – 1.25x)">
                                         <i class="fas fa-tachometer-alt"></i>
                                         <span id="audio-speed-label">1.0x</span>
