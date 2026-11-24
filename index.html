@@ -10,7 +10,7 @@
     <link rel="preconnect" href="https://cdnjs.cloudflare.com" crossorigin>
     <link rel="preconnect" href="https://cdn.jsdelivr.net" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Be+Vietnam+Pro:ital,wght@0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,400&family=JetBrains+Mono:wght@500;600;700;800&display=swap" rel="stylesheet">
-    <link rel="stylesheet" href="style.css?v=1.3">
+    <link rel="stylesheet" href="style.css?v=1.5">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
 </head>
 <body>
@@ -565,28 +565,20 @@
                             <!-- Pinned Full-Width Neo-Brutalist Audio Player Strip -->
                             <div class="il-audio-bar" id="il-audio-bar">
                                 <div class="il-audio-left">
-                                    <button type="button" class="il-audio-play-btn" id="audio-play-btn" title="Phát / Tạm dừng (Space)">
+                                    <button type="button" class="il-audio-play-btn" id="audio-play-btn" title="Phát / Tạm dừng (Space)" aria-label="Phát / Tạm dừng">
                                         <i class="fas fa-play" id="audio-play-icon"></i>
                                     </button>
-                                    <button type="button" class="il-audio-skip-btn" id="audio-back-btn" title="Tua lùi 5 giây">
-                                        <i class="fas fa-undo-alt"></i><span>-5s</span>
+                                    <button type="button" class="il-audio-skip-btn il-audio-icon-btn" id="audio-back-btn" title="Tua lùi 5 giây" aria-label="Tua lùi 5 giây">
+                                        <i class="fas fa-undo-alt"></i>
                                     </button>
-                                    <button type="button" class="il-audio-skip-btn" id="audio-fwd-btn" title="Tua tới 5 giây">
-                                        <span>+5s</span><i class="fas fa-redo-alt"></i>
+                                    <button type="button" class="il-audio-skip-btn il-audio-icon-btn" id="audio-fwd-btn" title="Tua tới 5 giây" aria-label="Tua tới 5 giây">
+                                        <i class="fas fa-redo-alt"></i>
                                     </button>
-                                    <span class="il-track-pill" id="audio-track-pill">
-                                        <i class="fas fa-headphones"></i>
-                                        <span id="audio-track-name">53.MP3</span>
-                                    </span>
-                                </div>
-
-                                <div class="il-audio-center" id="audio-seek-group">
-                                    <span class="il-audio-time" id="audio-cur-time">00:00</span>
-                                    <div class="il-audio-seek-wrap">
-                                        <input type="range" id="audio-seek-slider" class="il-audio-slider" min="0" max="100" step="0.1" value="0" aria-label="Tiến độ bài nghe" />
-                                        <div class="il-ab-markers" id="audio-ab-markers"></div>
+                                    <div class="il-audio-time-pill" id="audio-seek-group">
+                                        <span class="il-audio-time" id="audio-cur-time">00:00</span>
+                                        <span class="il-audio-time-sep">/</span>
+                                        <span class="il-audio-time" id="audio-dur-time">00:00</span>
                                     </div>
-                                    <span class="il-audio-time" id="audio-dur-time">00:00</span>
                                 </div>
 
                                 <div class="il-audio-tts-status" id="audio-tts-status" style="display: none;">
@@ -651,13 +643,9 @@
                                         </div>
 
                                         <div class="draft-pane-header-actions">
-                                            <div class="il-worksheet-tools">
-                                                <button type="button" class="font-btn" id="btn-font-dec" title="Giảm cỡ chữ">A-</button>
-                                                <button type="button" class="font-btn" id="btn-font-inc" title="Tăng cỡ chữ">A+</button>
-                                                <button type="button" class="font-btn highlight-toggle-btn" id="btn-highlight-toggle" title="Bật/tắt bút nhớ đánh dấu từ khóa">
-                                                    <i class="fas fa-highlighter"></i>
-                                                </button>
-                                            </div>
+                                            <button type="button" class="font-btn highlight-toggle-btn" id="btn-highlight-toggle" title="Bật/tắt bút nhớ đánh dấu từ khóa">
+                                                <i class="fas fa-highlighter"></i>
+                                            </button>
                                             <button type="button" class="draft-timer-pill ej-timer-pill" id="studio-timer-btn" title="Bấm để bắt đầu / tạm dừng đồng hồ đếm ngược">
                                                 <i class="far fa-clock"></i>
                                                 <span id="studio-timer-display">05:00</span>
@@ -726,6 +714,6 @@
     <script src="supabase-config.js?v=1.3"></script>
     <script src="supabase-client.js?v=1.3"></script>
     <script src="listening-data.js?v=1.3"></script>
-    <script src="script.js?v=1.4"></script>
+    <script src="script.js?v=1.5"></script>
 </body>
 </html>

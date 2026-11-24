@@ -4570,3 +4570,29 @@ body.highlight-mode-active mark.custom-highlight:hover {
     box-shadow: 3px 3px 0px #18181B;
     padding: 13px 15px;
 }
+
+/* Minimalist Icon-Only Skip Buttons & Compact Time Pill (v1.5) */
+.il-audio-icon-btn {
+    width: 30px;
+    padding: 0;
+    justify-content: center;
+    font-size: 12px;
+}
+
+.il-audio-time-pill {
+    display: inline-flex;
+    align-items: center;
+    gap: 4px;
+    height: 29px;
+    padding: 0 10px;
+    border-radius: 6px;
+    border: 1px solid #D4D4D8;
+    background: #FFFFFF;
+}
+
+.il-audio-time-sep {
+    font-family: 'JetBrains Mono', ui-monospace, monospace;
+    font-size: 11px;
+    color: #A1A1AA;
+    font-weight: 700;
+}

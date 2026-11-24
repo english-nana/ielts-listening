@@ -567,17 +567,9 @@ document.addEventListener('DOMContentLoaded', () => {
         });
     }
 
-    // Font Size Controls
+    // Worksheet Body Container
     const wsBodyEl = document.getElementById('ws-body-container');
-    function applyWsFontSize() {
-        if (wsBodyEl) wsBodyEl.style.setProperty('--ws-font-size', `${wsFontSize}px`);
-    }
-    const btnFontDec = document.getElementById('btn-font-dec');
-    const btnFontReset = document.getElementById('btn-font-reset');
-    const btnFontInc = document.getElementById('btn-font-inc');
-    if (btnFontDec) btnFontDec.onclick = () => { wsFontSize = Math.max(12, wsFontSize - 1); applyWsFontSize(); };
-    if (btnFontReset) btnFontReset.onclick = () => { wsFontSize = 15; applyWsFontSize(); };
-    if (btnFontInc) btnFontInc.onclick = () => { wsFontSize = Math.min(22, wsFontSize + 1); applyWsFontSize(); };
+    function applyWsFontSize() {}
 
     // Highlight Pen Tool (matches VSTEP Writing)
     const highlightBtn = document.getElementById('btn-highlight-toggle');
