@@ -1174,9 +1174,20 @@ document.addEventListener('DOMContentLoaded', () => {
     function renderLeftPanes(ex) {
         const sub = getCloudSub(ex.id);
         const isSubmitted = Boolean(sub && sub.is_submitted);
-        if (isSubmitted) {
-            unlockedScriptSet.add(ex.id);
-            unlockedKeySet.add(ex.id);
+        const canViewSolutions = isSubmitted || authState.isTeacher;
+
+        // Update lock indicator on Tapescript & Answer Key tabs
+        const scriptTabBtn = document.querySelector('[data-left-tab="script"]');
+        const keyTabBtn = document.querySelector('[data-left-tab="key"]');
+        if (scriptTabBtn) {
+            scriptTabBtn.innerHTML = canViewSolutions
+                ? 'Tapescript'
+                : '<i class="fas fa-lock" style="font-size:10px;margin-right:4px;opacity:0.75;"></i>Tapescript';
+        }
+        if (keyTabBtn) {
+            keyTabBtn.innerHTML = canViewSolutions
+                ? 'Đáp án'
+                : '<i class="fas fa-lock" style="font-size:10px;margin-right:4px;opacity:0.75;"></i>Đáp án';
         }
 
         // --- TAB 1: PRE-LISTENING WORD BANK & TIPS ---
@@ -1229,18 +1240,31 @@ document.addEventListener('DOMContentLoaded', () => {
         // --- TAB 2: TAPESCRIPT & UNDERLINED VOCABULARY ---
         const scriptEl = document.getElementById('left-pane-script');
         if (scriptEl) {
-            const unlocked = unlockedScriptSet.has(ex.id);
+            const unlocked = canViewSolutions && (isSubmitted || unlockedScriptSet.has(ex.id));
             const showAllVi = showAllViSet.has(ex.id);
             const showEv = showEvidenceSet.has(ex.id);
 
-            if (!unlocked) {
+            if (!canViewSolutions) {
                 scriptEl.innerHTML = `
                     <div class="il-script-guard">
-                        <div style="font-size:28px;margin-bottom:8px;">🎧</div>
-                        <h3>Lời thoại (Tapescript) đang được ẩn</h3>
-                        <p>Hãy nghe audio và hoàn thành phiếu bài tập ở khung bên phải trước để rèn phản xạ nghe thực tế. Tapescript sẽ tự động mở sau khi bạn nộp bài, hoặc bạn có thể bấm nút bên dưới để xem ngay.</p>
+                        <div style="font-size:28px;margin-bottom:8px;">🔒</div>
+                        <h3>Lời thoại (Tapescript) đang bị khóa</h3>
+                        <p>Để đảm bảo hiệu quả luyện nghe, bạn cần hoàn thành phiếu bài tập ở khung bên phải và bấm <strong>Kiểm tra &amp; Nộp bài</strong> trước khi xem Tapescript và dẫn chứng đáp án.</p>
+                        <button type="button" class="nb-back-btn" id="btn-back-to-pre-from-script">
+                            <i class="fas fa-arrow-left"></i> Quay lại Từ vựng &amp; Mẹo
+                        </button>
+                    </div>
+                `;
+                const btnBack = document.getElementById('btn-back-to-pre-from-script');
+                if (btnBack) btnBack.onclick = () => switchLeftTab('pre');
+            } else if (!unlocked) {
+                scriptEl.innerHTML = `
+                    <div class="il-script-guard">
+                        <div style="font-size:28px;margin-bottom:8px;">👨‍🏫</div>
+                        <h3>Chế độ Giáo viên · Mở xem Tapescript</h3>
+                        <p>Học viên chỉ xem được Tapescript sau khi nộp bài. Tài khoản Giáo viên có thể mở xem trước bất cứ lúc nào.</p>
                         <button type="button" class="nb-back-btn" id="btn-unlock-script">
-                            <i class="fas fa-eye"></i> Mở xem Tapescript &amp; Từ vựng
+                            <i class="fas fa-eye"></i> Mở xem Tapescript
                         </button>
                     </div>
                 `;
@@ -1363,13 +1387,26 @@ document.addEventListener('DOMContentLoaded', () => {
         // --- TAB 3: ANSWER KEY & EXPLANATIONS ---
         const keyEl = document.getElementById('left-pane-key');
         if (keyEl) {
-            const unlocked = unlockedKeySet.has(ex.id);
-            if (!unlocked) {
+            const unlocked = canViewSolutions && (isSubmitted || unlockedKeySet.has(ex.id));
+            if (!canViewSolutions) {
                 keyEl.innerHTML = `
                     <div class="il-script-guard">
-                        <div style="font-size:28px;margin-bottom:8px;">🔑</div>
-                        <h3>Đáp án đối chiếu (Answer Key) đang được ẩn</h3>
-                        <p>Hoàn thành bài tập và bấm <strong>Kiểm tra &amp; Nộp bài</strong> để tự động chấm điểm và mở khóa đáp án giải thích chi tiết từng câu.</p>
+                        <div style="font-size:28px;margin-bottom:8px;">🔒</div>
+                        <h3>Đáp án đối chiếu (Answer Key) đang bị khóa</h3>
+                        <p>Bạn cần hoàn thành phiếu bài tập ở khung bên phải và bấm <strong>Kiểm tra &amp; Nộp bài</strong> thì hệ thống mới mở khóa đáp án chuẩn và lời giải chi tiết từng câu.</p>
+                        <button type="button" class="nb-back-btn" id="btn-back-to-pre-from-key">
+                            <i class="fas fa-arrow-left"></i> Quay lại Từ vựng &amp; Mẹo
+                        </button>
+                    </div>
+                `;
+                const btnBack = document.getElementById('btn-back-to-pre-from-key');
+                if (btnBack) btnBack.onclick = () => switchLeftTab('pre');
+            } else if (!unlocked) {
+                keyEl.innerHTML = `
+                    <div class="il-script-guard">
+                        <div style="font-size:28px;margin-bottom:8px;">👨‍🏫</div>
+                        <h3>Chế độ Giáo viên · Mở xem Đáp án</h3>
+                        <p>Học viên chỉ xem được đáp án sau khi nộp bài. Tài khoản Giáo viên có thể mở xem trước bất cứ lúc nào.</p>
                         <button type="button" class="nb-back-btn" id="btn-unlock-key">
                             <i class="fas fa-key"></i> Mở xem Đáp án ngay
                         </button>
@@ -2432,24 +2469,40 @@ document.addEventListener('DOMContentLoaded', () => {
         wsSubmitBtn.addEventListener('click', async () => {
             const ex = DATA.byId[currentExerciseId];
             if (!ex || authState.isSubmitting) return;
+
+            const answers = collectAnswersFromDom(ex);
+            const answeredCount = countAnswered(ex, answers);
+            const totalQ = ex.questions.length;
+
+            if (answeredCount === 0) {
+                alert('Bạn chưa điền câu trả lời nào. Hãy nghe và làm bài trước khi bấm "Kiểm tra & Nộp bài" để mở khóa đáp án nhé!');
+                return;
+            }
+            if (answeredCount < totalQ) {
+                const okToSubmit = confirm(
+                    `Bạn mới điền ${answeredCount}/${totalQ} câu. Bạn có chắc muốn nộp bài luôn để chấm điểm và mở khóa đáp án không?\n\n(Điểm và kết quả lần nộp này sẽ được lưu lên hệ thống của Giáo viên.)`
+                );
+                if (!okToSubmit) return;
+            }
+
             authState.isSubmitting = true;
             wsSubmitBtn.disabled = true;
             wsSubmitBtn.innerHTML = `<i class="fas fa-spinner fa-spin"></i> Đang chấm &amp; lưu...`;
 
-            const answers = collectAnswersFromDom(ex);
             saveDraftAnswers(ex.id, answers);
             draftSaver.flush();
 
             const gradeRes = gradeExercise(ex, answers);
             applyInlineGradingMarks(ex, gradeRes, answers);
 
-            // Unlock Script & Answer Key after submitting
+            const syncRes = await submitExerciseToCloud(ex, answers, gradeRes);
+
+            // Unlock Script & Answer Key ONLY after submission is recorded
             unlockedScriptSet.add(ex.id);
             unlockedKeySet.add(ex.id);
             showEvidenceSet.add(ex.id);
             renderLeftPanes(ex);
 
-            const syncRes = await submitExerciseToCloud(ex, answers, gradeRes);
             renderResultAndFeedbackBoxes(ex, gradeRes, syncRes.row, syncRes.note);
             refreshProgressAndHistoryUI();
 
