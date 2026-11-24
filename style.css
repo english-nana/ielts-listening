@@ -4016,3 +4016,556 @@ body.highlight-mode-active mark.custom-highlight:hover {
         display: none;
     }
 }
+
+
+/* ============================================================================
+   COMPACT & CLEAN STUDIO REFINEMENT (v1.3)
+   Tighter density, calmer borders inside split panes, better vertical rhythm
+   ============================================================================ */
+
+/* Sleeker Sidebar & Topbar Proportions */
+.ej-sidebar {
+    width: 244px;
+    flex: 0 0 244px;
+}
+
+.ej-sidebar-header,
+.dt-topbar {
+    height: 52px;
+    min-height: 52px;
+}
+
+.app-layout.focus-lesson-mode .dt-topbar {
+    height: 48px;
+    min-height: 48px;
+}
+
+.ej-sb-logo-badge {
+    width: 32px;
+    height: 32px;
+    border-radius: 8px;
+    box-shadow: 2px 2px 0px #FFE55C;
+    font-size: 13.5px;
+}
+
+.ej-sb-logo-main {
+    font-size: 14px;
+}
+
+.ej-sidebar-nav {
+    padding: 10px 10px 16px;
+    gap: 8px;
+}
+
+.ej-sb-group {
+    gap: 3px;
+}
+
+.ej-sb-item {
+    padding: 7px 10px;
+    border-radius: 8px;
+    font-size: 13px;
+}
+
+.ej-sb-item.active {
+    box-shadow: 2px 2px 0px #FFE55C;
+}
+
+.vs-sb-card {
+    border-radius: 10px;
+    box-shadow: 2px 2px 0px #18181B;
+}
+
+.vs-sb-lesson-btn {
+    padding: 5px 7px;
+    font-size: 12px;
+    gap: 7px;
+}
+
+.vs-sb-footer {
+    padding: 10px;
+    gap: 6px;
+}
+
+.vs-sb-progress-card {
+    padding: 7px 9px;
+    border-radius: 8px;
+}
+
+.vs-sb-collapse-footer-btn {
+    height: 31px;
+    font-size: 12px;
+    border-radius: 8px;
+}
+
+/* Sleeker Topbar Pills */
+.vs-section-crumb {
+    height: 30px;
+    padding: 0 11px;
+    font-size: 11.5px;
+}
+
+.ej-topbar-search-wrap {
+    width: 268px;
+    height: 32px;
+    padding: 0 12px;
+}
+
+.notif-bell-btn,
+.user-account-pill,
+.top-pill-btn {
+    height: 34px;
+    border-radius: 8px;
+}
+
+.notif-bell-btn {
+    width: 34px;
+}
+
+.nb-back-btn {
+    padding: 5px 11px;
+    font-size: 12.5px;
+    border-radius: 8px;
+}
+
+/* Tighter Home & Hub Page Layout */
+.nb-page-container {
+    max-width: 1040px;
+    padding: 20px 24px 44px;
+}
+
+.nb-course-header {
+    margin-bottom: 16px;
+}
+
+.nb-course-code {
+    font-size: 11px;
+    margin-bottom: 5px;
+}
+
+.nb-course-title {
+    font-size: 23px;
+    margin-bottom: 5px;
+}
+
+.nb-course-subtitle {
+    font-size: 13.8px;
+    line-height: 1.5;
+}
+
+/* Compact Horizontal Stat Strip on Home */
+.il-home-stats-row {
+    gap: 12px;
+    margin-bottom: 20px;
+}
+
+.il-stat-pill-card {
+    background: #FFFFFF;
+    border: 2px solid #18181B;
+    box-shadow: 3px 3px 0px #18181B;
+    padding: 11px 14px;
+    display: flex;
+    align-items: center;
+    gap: 12px;
+}
+
+.il-stat-pill-meta {
+    display: flex;
+    flex-direction: column;
+    min-width: 0;
+}
+
+.il-stat-pill-label {
+    font-family: 'JetBrains Mono', ui-monospace, Menlo, monospace;
+    font-size: 10px;
+    font-weight: 700;
+    letter-spacing: 0.06em;
+    color: #71717A;
+    text-transform: uppercase;
+}
+
+.il-stat-pill-val {
+    font-size: 16px;
+    font-weight: 900;
+    color: #18181B;
+    line-height: 1.25;
+}
+
+.nb-section-bar {
+    margin-bottom: 12px;
+}
+
+.nb-section-title {
+    font-size: 14.5px;
+}
+
+/* Cleaner, Tighter Unit Cards */
+.nb-units-grid {
+    gap: 14px;
+}
+
+.nb-unit-card {
+    border-width: 2px;
+    box-shadow: 3px 3px 0px #18181B;
+    padding: 16px 18px;
+    min-height: 168px;
+}
+
+.nb-unit-card:hover {
+    transform: translate(-1.5px, -1.5px);
+    box-shadow: 4.5px 4.5px 0px #18181B;
+}
+
+.nb-card-top {
+    margin-bottom: 10px;
+}
+
+.nb-unit-num {
+    width: 38px;
+    height: 38px;
+    font-size: 15px;
+}
+
+.nb-status-badge {
+    padding: 3px 8px;
+    font-size: 11.5px;
+}
+
+.nb-card-title {
+    font-size: 16.5px;
+    margin-bottom: 6px;
+}
+
+.nb-card-vi {
+    border-left-width: 3px;
+    padding-left: 8px;
+    margin-bottom: 7px;
+    font-size: 13.2px;
+}
+
+.nb-card-desc {
+    font-size: 13px;
+    line-height: 1.5;
+    margin-bottom: 12px;
+}
+
+.nb-card-footer {
+    padding-top: 10px;
+}
+
+/* Sleek Single-Line Audio Bar in Listening Studio */
+.app-layout.split-tab-active .content-area,
+.content-area:has(#listening-studio.active),
+#listening-studio.active {
+    height: calc(100vh - 48px);
+    max-height: calc(100vh - 48px);
+}
+
+.il-audio-bar {
+    min-height: 46px;
+    padding: 6px 16px;
+    gap: 12px;
+    background: #FAF9F6;
+    border-bottom: 1.5px solid #18181B;
+}
+
+.il-audio-play-btn {
+    width: 32px;
+    height: 30px;
+    border-radius: 7px;
+    font-size: 12px;
+}
+
+.il-audio-skip-btn,
+.il-audio-tool-btn,
+.il-track-pill {
+    height: 29px;
+    padding: 0 8px;
+    border-radius: 6px;
+    font-size: 11px;
+}
+
+.il-audio-time {
+    font-size: 11.5px;
+    min-width: 38px;
+}
+
+/* Calm Minimalist Zinc Focus Studio Panes (Matching VSTEP Essay View) */
+.draft-split-workspace {
+    grid-template-columns: var(--left-pane-width, 44%) 7px 1fr;
+}
+
+.draft-pane-sticky-header {
+    min-height: 42px;
+    padding: 5px 14px;
+    gap: 8px;
+}
+
+.draft-prompt-select {
+    height: 29px;
+    max-width: 225px;
+    font-size: 12px;
+    border: 1px solid #D4D4D8;
+}
+
+.draft-prompt-select:hover,
+.draft-prompt-select:focus {
+    border-color: #18181B;
+}
+
+.draft-level-btn {
+    padding: 3px 9px;
+    font-size: 11.5px;
+}
+
+.ej-header-pill {
+    padding: 3px 8px;
+    font-size: 11.5px;
+    border-width: 1px;
+}
+
+.ej-pane-heading {
+    font-size: 13.5px;
+}
+
+.draft-timer-pill {
+    height: 28px;
+    padding: 0 9px;
+    font-size: 11.5px;
+}
+
+.font-btn {
+    padding: 3px 7px;
+    font-size: 11.5px;
+}
+
+.draft-pane-scroll-body {
+    padding: 14px 16px 32px;
+}
+
+/* Cleaner Left Pane Cards (No visual clutter) */
+.il-theme-banner {
+    padding: 10px 13px;
+    border-width: 1.5px;
+    box-shadow: 2px 2px 0px #18181B;
+    border-radius: 8px;
+    margin-bottom: 12px;
+}
+
+.il-theme-ico {
+    width: 36px;
+    height: 36px;
+    font-size: 15px;
+    border-radius: 6px;
+    border-width: 1.5px;
+}
+
+.il-theme-kicker {
+    font-size: 10px;
+}
+
+.il-theme-title {
+    font-size: 14.5px;
+}
+
+.il-theme-vi {
+    font-size: 12.2px;
+}
+
+.il-card-box {
+    border: 1px solid #E4E4E7;
+    border-radius: 9px;
+    padding: 13px 15px;
+    margin-bottom: 12px;
+    background: #FFFFFF;
+}
+
+.il-card-box.amber {
+    background: #FFFBEB;
+    border-color: #FDE68A;
+}
+
+.il-card-box-head {
+    margin-bottom: 9px;
+    padding-bottom: 6px;
+}
+
+.il-card-box-title {
+    font-size: 12.2px;
+}
+
+.il-wordbank-chips {
+    gap: 6px;
+}
+
+.il-wb-chip {
+    padding: 5px 9px;
+    border: 1px solid #D4D4D8;
+    border-radius: 7px;
+    box-shadow: none;
+    font-size: 12.5px;
+    background: #FAFAFA;
+}
+
+.il-wb-chip:hover {
+    background: #FEF9C3;
+    border-color: #18181B;
+    transform: none;
+}
+
+.il-tips-list {
+    font-size: 13px;
+    line-height: 1.55;
+    gap: 6px;
+}
+
+.il-script-controls {
+    padding: 8px 11px;
+    margin-bottom: 10px;
+    border: 1px solid #D4D4D8;
+    border-radius: 8px;
+}
+
+.il-script-turn {
+    padding: 9px 12px;
+    font-size: 13.8px;
+    line-height: 1.65;
+}
+
+/* Cleaner Right Pane Worksheet Card */
+.draft-exercise-card {
+    border: 1.5px solid #D4D4D8;
+    border-radius: 10px;
+    box-shadow: 0 1px 3px rgba(0, 0, 0, 0.04);
+}
+
+.draft-exercise-card-header {
+    padding: 12px 16px;
+    border-bottom: 1px solid #E4E4E7;
+}
+
+.draft-exercise-title {
+    font-size: 15px;
+}
+
+.draft-exercise-instruction {
+    font-size: 12.5px;
+}
+
+.draft-exercise-card-body {
+    padding: 16px 18px;
+    font-size: var(--ws-font-size, 14.5px);
+    line-height: 1.85;
+}
+
+.il-cloze-para {
+    padding: 12px 14px;
+    margin-bottom: 11px;
+    border-left-width: 3px;
+}
+
+.il-blank-input {
+    width: 132px;
+    height: 28px;
+    padding: 0 8px;
+    border: 1px solid #D4D4D8;
+    border-bottom: 2px solid #18181B;
+    border-radius: 5px;
+}
+
+.draft-exercise-card-footer {
+    padding: 10px 16px;
+    background: #FAFAFA;
+    border-top: 1px solid #E4E4E7;
+}
+
+.il-icon-only-btn {
+    padding: 6px 9px;
+}
+
+.draft-mini-btn {
+    padding: 5px 10px;
+    font-size: 12px;
+    border: 1px solid #D4D4D8;
+    border-radius: 6px;
+}
+
+.draft-mini-btn:hover:not(:disabled) {
+    border-color: #18181B;
+    background: #F4F1EA;
+}
+
+.draft-submit-btn {
+    padding: 6px 14px;
+    font-size: 12.5px;
+    border-radius: 7px;
+    box-shadow: none;
+}
+
+.draft-submit-btn:hover:not(:disabled) {
+    box-shadow: 2px 2px 0px #FFE55C;
+}
+
+/* Compact Vocab Bank, History & Theory */
+.il-vocab-toolbar {
+    padding: 10px 14px;
+    margin-bottom: 14px;
+    box-shadow: 2px 2px 0px #18181B;
+}
+
+.il-vocab-grid {
+    grid-template-columns: repeat(auto-fill, minmax(235px, 1fr));
+    gap: 11px;
+}
+
+.il-vocab-card {
+    padding: 11px 13px;
+    box-shadow: 2px 2px 0px #18181B;
+    gap: 4px;
+}
+
+.il-vc-word {
+    font-size: 14.8px;
+}
+
+.il-vc-vi {
+    font-size: 12.8px;
+    padding-top: 5px;
+}
+
+.ej-history-card {
+    padding: 13px 16px;
+    box-shadow: 3px 3px 0px #18181B;
+}
+
+#ly-thuyet {
+    padding: 20px 24px 48px;
+}
+
+.dt-overview-container {
+    max-width: 1040px;
+    gap: 16px;
+}
+
+.dt-h1 {
+    font-size: 23px;
+}
+
+.dt-neo-card {
+    border-width: 2px;
+    box-shadow: 3px 3px 0px #18181B;
+    padding: 18px 20px;
+}
+
+.dt-stat-card {
+    border-width: 2px;
+    box-shadow: 3px 3px 0px #18181B;
+    padding: 13px 15px;
+}
+
+.il-score-card {
+    margin-top: 12px;
+    border-width: 1.5px;
+    box-shadow: 3px 3px 0px #18181B;
+    padding: 13px 15px;
+}

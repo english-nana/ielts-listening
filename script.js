@@ -431,14 +431,19 @@ document.addEventListener('DOMContentLoaded', () => {
         });
     }
 
-    document.querySelectorAll('[data-audio-rate]').forEach(btn => {
-        btn.addEventListener('click', () => {
-            const r = parseFloat(btn.getAttribute('data-audio-rate')) || 1;
-            audioState.rate = r;
-            if (audioEl) audioEl.playbackRate = r;
-            document.querySelectorAll('[data-audio-rate]').forEach(b => b.classList.toggle('active', b === btn));
+    const SPEED_STEPS = [0.75, 0.9, 1, 1.15, 1.25];
+    const audioSpeedBtn = document.getElementById('audio-speed-btn');
+    const audioSpeedLabel = document.getElementById('audio-speed-label');
+    if (audioSpeedBtn) {
+        audioSpeedBtn.addEventListener('click', () => {
+            const curIdx = SPEED_STEPS.indexOf(audioState.rate);
+            const nextRate = SPEED_STEPS[(curIdx + 1) % SPEED_STEPS.length];
+            audioState.rate = nextRate;
+            if (audioEl) audioEl.playbackRate = nextRate;
+            if (audioSpeedLabel) audioSpeedLabel.textContent = `${nextRate.toFixed(nextRate % 1 === 0 ? 1 : 2).replace(/0$/, '')}x`;
+            audioSpeedBtn.classList.toggle('active', nextRate !== 1);
         });
-    });
+    }
 
     if (muteBtn && audioEl) {
         muteBtn.addEventListener('click', () => {
@@ -986,7 +991,7 @@ document.addEventListener('DOMContentLoaded', () => {
                 </div>
                 <h3 class="nb-card-title">${esc(ex.title)}</h3>
                 <div class="nb-card-vi">${esc(ex.titleVi)}</div>
-                <p class="nb-card-desc">${esc(ex.ieltsPart)} · <strong>${esc(ex.questionType)}</strong>. Gồm ${ex.wordBank.length} từ vựng Pre-Listening, bài tập tương tác, Tapescript dịch nghĩa từng câu và Đáp án giải thích.</p>
+                <p class="nb-card-desc">${esc(ex.ieltsPart)} · <strong>${esc(ex.shortType)}</strong> · ${ex.wordBank.length} từ vựng &amp; Tapescript đối chiếu.</p>
                 <div class="nb-card-footer">
                     <div class="nb-card-meta">
                         <span><i class="fas fa-headphones"></i> ${esc(ex.trackLabel)} (${esc(ex.duration)})</span>
